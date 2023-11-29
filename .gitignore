@@ -31,3 +31,6 @@ fp-info-cache
 #lock files
 ~nerfcontroller.kicad_sch.lck 
 ~nerfcontroller.kicad_pcb.lck 
+
+#backups
+nerfcontroller-backups/
