@@ -35,3 +35,4 @@ fp-info-cache
 #backups
 nerfcontroller-backups/
 gerbers/
+code/nerf controller/src/nerfgun.code-workspace
