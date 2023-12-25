@@ -36,3 +36,4 @@ fp-info-cache
 nerfcontroller-backups/
 gerbers/
 code/nerf controller/src/nerfgun.code-workspace
+code/nerf controller/src/teleplot_layout.json
