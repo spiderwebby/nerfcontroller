@@ -34,10 +34,10 @@ const int intervalTriggersCheck = 50;
 unsigned long previousMillisPID = 0;
 const int intervalPID = 50;
 
-unsigned long previousMillisFire
+unsigned long previousMillisFire;
 const int intervalFire = 250; //ms between shots
 
-unsigned long previousMillisSolenoidOnTime
+unsigned long previousMillisSolenoidOnTime;
 const int SolenoidOnTime = 100; //ms that the solenoids are powered for per shot
 
 unsigned long previousMillisRev = 0;
@@ -93,6 +93,8 @@ void setup() {
   pinMode(A1, INPUT);
   pinMode(A2, INPUT);
 
+  Serial.begin(9600);
+
 }
 
 
@@ -118,11 +120,13 @@ void loop() {
     if(revTriggerFlag){
       analogWrite(top_flywheel, manualPWM);
       analogWrite(bottom_flywheel, manualPWM);
+      Serial.println("spinn!");
     }
     else
     {
       analogWrite(top_flywheel, 0);
       analogWrite(bottom_flywheel, 0);
+      Serial.println("no spinn :(");
     }
   }
 
@@ -136,17 +140,20 @@ void loop() {
 
 
   //*wiggle solenoids
-  if(mainTriggerPosition==0&&revTriggerFlag) {
+  if(mainTriggerPosition==0 && revTriggerFlag) {
     currentMillis = millis();
     if(currentMillis - previousMillisFire >= intervalFire) {
       previousMillisFire = currentMillis;
       previousMillisSolenoidOnTime = currentMillis;
       firing = 1;
-      if(leftBarrelFiredLast)
+      if(leftBarrelFiredLast){
         digitalWrite(right_solenoid,HIGH);
-      else
-        digitalWrite(left_solenoid,High);
-      leftBarrelFiredLast++;
+        Serial.println("right solenoid on");
+      }else{
+        digitalWrite(left_solenoid,HIGH);
+        Serial.println("left solenoid on");
+      }
+      leftBarrelFiredLast = !leftBarrelFiredLast;
     }
   }
 
@@ -155,11 +162,14 @@ void loop() {
     currentMillis = millis();
     if (currentMillis - previousMillisSolenoidOnTime >= SolenoidOnTime) {
       previousMillisSolenoidOnTime = currentMillis;
-      if(!leftBarrelFiredLast) // inverted because it's already been incremented by the firing routine
+      if(!leftBarrelFiredLast){ // inverted because it's already been incremented by the firing routine
         digitalWrite(right_solenoid,LOW);
-      else
+        Serial.println("right solenoid off");
+      }else{
         digitalWrite(left_solenoid,LOW);
-        firing = 0;
+        Serial.println("left solenoid off");
+      }
+      firing = 0;
     }
   }
 
