@@ -25,10 +25,10 @@ const int LED = 13;
 const float dartMass = 0.001; // 1g
 const float flywheel_circumference = 72.2566310326;
 const int dist_chrono = 100; //mm
-const int manualPWM = 20; //manual setting for PWM flywheel control
+const int manualPWM = 50; //manual setting for PWM flywheel control
 
 //*misc settings
-const int main_trigger_threashold = 20;
+const int main_trigger_threashold = 1050;
 
 //* intervals for main loop stuff
 unsigned long previousMillisTriggersCheck = 0;
@@ -38,11 +38,12 @@ unsigned long previousMillisPID = 0;
 const int intervalPID = 50;
 
 unsigned long previousMillisFire;
-const int intervalFire = 250; //ms between shots
+const int intervalFireDefault = 150; //ms between shots
+int intervalFire = 250; 
 
 unsigned long previousMillisSolenoidOnTimeL;
 unsigned long previousMillisSolenoidOnTimeR;
-const int SolenoidOnTime = 300; //ms that the solenoids are powered for per shot !!!must be less than 2*intervalFire!!!
+const int SolenoidOnTime = 100; //ms that the solenoids are powered for per shot !!!must be less than 2*intervalFire!!!
 
 unsigned long previousMillisRev = 0;
 const int intervalRev = 50;
@@ -100,6 +101,7 @@ void setup() {
   
   //analogue IO
   pinMode(main_trigger, INPUT_PULLUP); //A0
+  pinMode(A1, INPUT_PULLUP); //A1
   pinMode(A1, INPUT);
   pinMode(A2, INPUT);
 
@@ -127,7 +129,7 @@ void loop() {
   if (currentMillis - previousMillisTriggersCheck >= intervalTriggersCheck) {
     previousMillisTriggersCheck = currentMillis;
     revTriggerFlag = !digitalRead(rev_trigger);
-    mainTriggerPosition = analogRead(main_trigger);
+    mainTriggerPosition = map(analogRead(main_trigger), 550, 860, 1023, 0);
     if(mainTriggerPosition>main_trigger_threashold && revTriggerFlag == 0){  //neither trigger has been pulled
       triggerOutOfSequence = 0;
     }else if (mainTriggerPosition>main_trigger_threashold && revTriggerFlag == 1){ //just rev trigger
@@ -135,6 +137,8 @@ void loop() {
     }else if (mainTriggerPosition<main_trigger_threashold && revTriggerFlag == 0){ //just main trigger
       triggerOutOfSequence = 1;
     }
+
+  intervalFire = intervalFireDefault + mainTriggerPosition;
 
   if(triggerOutOfSequence) revTriggerFlag = 0; //no shooty if you did it wrong!!
 
