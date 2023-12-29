@@ -94,7 +94,7 @@ void setup() {
   pinMode(left_solenoid, OUTPUT);  //11 pwm
   pinMode(right_solenoid, OUTPUT);  //12
 
-  digitalWrite(main_trigger, LOW);  //mosfets off to start
+  digitalWrite(9, LOW);  //mosfets off to start
   digitalWrite(10, LOW);
   digitalWrite(11, LOW);
   digitalWrite(12, LOW);
