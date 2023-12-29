@@ -1,0 +1,103 @@
+{
+   "widgets": [
+      {
+         "type": "chart",
+         "gridPos": {
+            "h": 6,
+            "w": 6,
+            "x": 0,
+            "y": 0
+         },
+         "series": [
+            {
+               "name": "left solenoid",
+               "sourceNames": [
+                  "left solenoid"
+               ],
+               "formula": "",
+               "options": {
+                  "_serie": "left solenoid",
+                  "stroke": "rgba(231,76,60,1)",
+                  "fill": "rgba(231,76,60,0.1)"
+               },
+               "type": "number"
+            },
+            {
+               "name": "right solenoid",
+               "sourceNames": [
+                  "right solenoid"
+               ],
+               "formula": "",
+               "options": {
+                  "_serie": "right solenoid",
+                  "stroke": "rgba(52,152,219,1)",
+                  "fill": "rgba(52,152,219,0.1)"
+               },
+               "type": "number"
+            }
+         ]
+      },
+      {
+         "type": "chart",
+         "gridPos": {
+            "h": 6,
+            "w": 6,
+            "x": 0,
+            "y": 0
+         },
+         "series": [
+            {
+               "name": "trigger out of sequence",
+               "sourceNames": [
+                  "trigger out of sequence"
+               ],
+               "formula": "",
+               "options": {
+                  "_serie": "trigger out of sequence",
+                  "stroke": "rgba(231,76,60,1)",
+                  "fill": "rgba(231,76,60,0.1)"
+               },
+               "type": "number"
+            },
+            {
+               "name": "spinn!",
+               "sourceNames": [
+                  "spinn!"
+               ],
+               "formula": "",
+               "options": {
+                  "_serie": "spinn!",
+                  "stroke": "rgba(52,152,219,1)",
+                  "fill": "rgba(52,152,219,0.1)"
+               },
+               "type": "number"
+            }
+         ]
+      },
+      {
+         "type": "chart",
+         "gridPos": {
+            "h": 6,
+            "w": 6,
+            "x": 0,
+            "y": 0
+         },
+         "series": [
+            {
+               "name": "maintriggerpos",
+               "sourceNames": [
+                  "maintriggerpos"
+               ],
+               "formula": "",
+               "options": {
+                  "_serie": "maintriggerpos",
+                  "stroke": "rgba(231,76,60,1)",
+                  "fill": "rgba(231,76,60,0.1)"
+               },
+               "type": "number"
+            }
+         ]
+      }
+   ],
+   "viewDuration": "10"
+}
