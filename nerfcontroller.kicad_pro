@@ -517,6 +517,10 @@
     [
       "46594868-701b-452a-a8fc-49ab0c8b8cf0",
       ""
+    ],
+    [
+      "c12da623-8dcd-432e-a794-8c3241dc593e",
+      "mosfets + drivers"
     ]
   ],
   "text_variables": {}
